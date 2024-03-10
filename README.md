@@ -1,0 +1,14 @@
+Social media event app built with:
+-React
+-ASP.NET
+-TypeScript
+-C#
+-PostGresQL
+-MobX
+-React Router
+-Semantic UI React
+-Formik
+-Cloudinary
+-SignalR
+-Docker
+-Facebook JS SDK
