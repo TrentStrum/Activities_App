@@ -1,6 +1,8 @@
-Social media event app built with:
+Social media event app using Clean Architecture and the CQRS and Mediator pattern. Includes the following:
+
 -React
--ASP.NET
+-ASP.NET (Web API)
+-Entity Framework
 -TypeScript
 -C#
 -PostGresQL
@@ -12,3 +14,18 @@ Social media event app built with:
 -SignalR
 -Docker
 -Facebook JS SDK
+-Postman
+
+Application features include:
+-multi-project solution
+-ASP.NET Core Identity for authentication
+-Client side login and register function
+-AutoMapper in ASP.NET Core
+-Photo upload widget
+-React Final Form
+-Paging, sorting, and filtering
+-Real time web communication using SignalR
+-Infinite scrolling
+-Emails
+-'A' security rating from...
+
