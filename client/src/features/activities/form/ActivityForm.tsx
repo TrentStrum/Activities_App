@@ -1,18 +1,15 @@
 import { Button, Form, Segment } from 'semantic-ui-react';
-import { Activity } from '../../../app/models/activity';
 import { ChangeEvent, useState } from 'react';
+import { useActivityContext } from '../../../app/stores/ActivityContext';
 
-interface Props {
-	activity: Activity | undefined;
-	closeForm: () => void;
-	createOrEdit: (activity: Activity) => void;
-	submitting: boolean;
-}
+export default function ActivityForm() {
+		const {
+			selectedActivity,
+			createOrEditActivity,
+			isSubmitting,
+			closeForm,
+		} = useActivityContext();
 
-export default function ActivityForm({
-	activity: selectedActivity,
-	closeForm, createOrEdit, submitting
-}: Props) {
 	const initialState = selectedActivity ?? {
 		id: '',
 		title: '',
@@ -26,7 +23,7 @@ export default function ActivityForm({
 	const [activity, setActivity] = useState(initialState);
 
 	function handleSubmit() {
-		createOrEdit(activity);
+		createOrEditActivity(activity);
 	}
 
 	function handleInputChange(
@@ -81,7 +78,7 @@ export default function ActivityForm({
 						onChange={handleInputChange}
 					/>
 					<Button
-						loading={submitting}
+						loading={isSubmitting}
 						floated='right'
 						positive
 						type='submit'

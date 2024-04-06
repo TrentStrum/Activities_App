@@ -27,5 +27,5 @@ Application features include:
 -Real time web communication using SignalR
 -Infinite scrolling
 -Emails
--'A' security rating from...
+-'A' security rating from?
 

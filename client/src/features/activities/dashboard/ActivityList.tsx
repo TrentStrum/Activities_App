@@ -1,15 +1,13 @@
 import { Button, Item, Label, Segment } from 'semantic-ui-react';
 import { Activity } from '../../../app/models/activity';
 import { SyntheticEvent, useState } from 'react';
+import { useActivityContext } from '../../../app/stores/ActivityContext';
+import { Link } from 'react-router-dom';
 
+export default function ActivityList() {
 
-interface Props {
-	activities: Activity[];
-	selectActivity: (id: string) => void;
-	deleteActivity: (id: string) => void;
-	submitting: boolean;
-}
-export default function ActivityList({ activities, selectActivity, deleteActivity, submitting }: Props) {
+	const { activities, deleteActivity, isSubmitting } =
+		useActivityContext();
 	const [ target, setTarget ] = useState('');
 
 
@@ -22,7 +20,7 @@ export default function ActivityList({ activities, selectActivity, deleteActivit
 		<>
 			<Segment>
 				<Item.Group divided>
-					{activities.map((activity) => (
+					{activities.map((activity: Activity) => (
 						<Item key={activity.id}>
 							<Item.Content>
 								<Item.Header as='a'>
@@ -37,16 +35,18 @@ export default function ActivityList({ activities, selectActivity, deleteActivit
 								</Item.Description>
 								<Item.Extra>
 									<Button
+										as={Link}
+										to={`/activities/${activity.id}`}
 										floated='right'
 										content='View'
 										color='blue'
-										onClick={() =>
-											selectActivity(activity.id)
-										}
 									/>
 									<Button
 										className={activity.id}
-										loading={submitting && target === activity.id}
+										loading={
+											isSubmitting &&
+											target === activity.id
+										}
 										floated='right'
 										content='Delete'
 										color='red'
