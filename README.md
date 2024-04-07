@@ -1,3 +1,6 @@
+VERSION WITH MOBX
+
+
 Social media event app using Clean Architecture and the CQRS and Mediator pattern. Includes the following:
 
 -React
