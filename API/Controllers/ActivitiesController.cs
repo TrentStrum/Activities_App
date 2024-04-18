@@ -11,13 +11,13 @@ namespace API.Controllers
         [HttpGet] //api/activities
         public async Task<IActionResult> GetActivities()
         {
-            return HandleResult(await Mediator.Send(new ListHandler.Query()));
+            return HandleResult(await Mediator.Send(new List.Query()));
         }
 
         [HttpGet("{id}")] //api/activities/{id}
         public async Task<IActionResult> GetActivity(Guid id)
         {
-            return HandleResult(await Mediator.Send(new DetailsHandler.Query{Id = id}));
+            return HandleResult(await Mediator.Send(new Details.Query{Id = id}));
         }
         
         [HttpPost]

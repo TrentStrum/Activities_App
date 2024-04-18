@@ -1,25 +1,39 @@
 /* eslint-disable react-refresh/only-export-components */
-import { Tab } from "semantic-ui-react"
-import ProfilePhotos from "./ProfilePhotos";
-import { Profile } from "../../app/models/profile";
+import { Tab } from 'semantic-ui-react';
+import ProfilePhotos from './ProfilePhotos';
+import { Profile } from '../../app/models/profile';
 import { observer } from 'mobx-react-lite';
+import ProfileFollowings from './ProfileFollowings';
+import ProfileAbout from './ProfileAbout';
+import { useStore } from '../../app/stores/store';
 
 interface Props {
-    profile: Profile;
+	profile: Profile;
 }
 
-export default observer(function ProfileContent ({profile}: Props) {
-    const panes = [
-        {menuItem: 'About', render: () => <Tab.Pane>About Content</Tab.Pane>},
-        {menuItem: 'Photos', render: () => <ProfilePhotos profile={profile}/>},
-        {menuItem: 'Events', render: () => <Tab.Pane>Events Content</Tab.Pane>},
-        {menuItem: 'Followers', render: () => <Tab.Pane>Followers Content</Tab.Pane>},
-        {menuItem: 'Followering', render: () => <Tab.Pane>Following Content</Tab.Pane>}
-    ];
+export default observer(function ProfileContent({ profile }: Props) {
+	const { profileStore } = useStore();
 
+	const panes = [
+		{ menuItem: 'About', render: () => <ProfileAbout /> },
+		{
+			menuItem: 'Photos',
+			render: () => <ProfilePhotos profile={profile} />,
+		},
+		{
+			menuItem: 'Events',
+			render: () => <Tab.Pane>Events Content</Tab.Pane>,
+		},
+		{ menuItem: 'Followers', render: () => <ProfileFollowings /> },
+		{ menuItem: 'Followering', render: () => <ProfileFollowings /> },
+	];
 
-
-    return (
-        <Tab menu={{fluid: true, vertical: true}} menuPosition="right" panes={panes} />
-    )
-})
+	return (
+		<Tab
+			menu={{ fluid: true, vertical: true }}
+			menuPosition='right'
+			panes={panes}
+			onTabChange={(_, data) => profileStore.setActiveTab(data.activeIndex as number)}
+		/>
+	);
+});
