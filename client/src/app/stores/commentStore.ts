@@ -19,7 +19,7 @@ export default class CommentStore {
 		if (store.activityStore.selectedActivity) {
 			this.hubConnection = new HubConnectionBuilder()
 				.withUrl(
-					'http://localhost:5000/chat?activityId=' + activityId,
+					import.meta.env.VITE_CHAT_URL + '?activityId=' + activityId,
 					{
 						accessTokenFactory: () =>
 							store.userStore.user?.token as string,
@@ -37,7 +37,7 @@ export default class CommentStore {
 			this.hubConnection.on('LoadComments', (comments: ChatComment[]) => {
 				runInAction(() => {
 					comments.forEach((comment) => {
-						comment.createdAt = new Date(comment.createdAt + 'Z');
+						comment.createdAt = new Date(comment.createdAt);
 					});
 					this.comments = comments;
 				});

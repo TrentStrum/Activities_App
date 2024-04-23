@@ -14,7 +14,7 @@ export default observer(function LoginForm() {
 			onSubmit={(values, { setErrors }) =>
 				userStore
 					.login(values)
-					.catch((error) =>
+					.catch(() =>
 						setErrors({ error: 'Invalid email or password' })
 					)
 			}

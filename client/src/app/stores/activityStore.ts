@@ -152,7 +152,7 @@ export default class ActivityStore {
 		this.loadingInitial = state;
 	};
 
-	createActivity = async (activity: Activity) => {
+	createActivity = async (activity: ActivityFormValues) => {
 		const user = store.userStore.user;
 		const attendee = new Profile(user!);
 
@@ -163,7 +163,6 @@ export default class ActivityStore {
 			newActivity.attendees = [attendee];
 			this.setActivity(newActivity);
 			runInAction(() => {
-				this.activityRegistry.set(activity.id, activity);
 				this.selectedActivity = newActivity;
 			});
 		} catch (error) {
@@ -175,7 +174,6 @@ export default class ActivityStore {
 	};
 
 	updateActivity = async (activity: ActivityFormValues) => {
-		this.loading = true;
 		try {
 			await agent.Activities.update(activity);
 			runInAction(() => {

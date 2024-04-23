@@ -1,0 +1,29 @@
+# fly.toml app configuration file generated for activities-app-trs on 2024-04-22T17:19:34-07:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'activities-app-trs'
+primary_region = 'sjc'
+
+[build]
+  image = 'tstrum/reactivities:latest'
+
+[env]
+  ASPNETCORE_URLS="http://+:8080"
+  Cloudinary__CloudName="dyy3ognxg"
+  Cloudinary__ApiKey="558651463972524"
+
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1

@@ -30,6 +30,12 @@ namespace Persistence
                         UserName = "tom",
                         Email = "tom@test.com"
                     },
+                    new AppUser
+                    {
+                        DisplayName = "trent",
+                        UserName = "tstrum",
+                        Email = "trent@test.com"
+                    },
                 };
 
                 foreach (var user in users)
@@ -234,6 +240,28 @@ namespace Persistence
                         Description = "Activity 8 months in future",
                         Category = "drinks",
                         City = "London",
+                        Venue = "Pub",
+                        Attendees = new List<ActivityAttendee>
+                        {
+                            new ActivityAttendee
+                            {
+                                AppUser = users[2],
+                                IsHost = true                            
+                            },
+                            new ActivityAttendee
+                            {
+                                AppUser = users[1],
+                                IsHost = false                            
+                            },
+                        }
+                    },
+                    new Activity
+                    {
+                        Title = "Trent's birthday",
+                        Date = DateTime.UtcNow.AddMonths(8),
+                        Description = "Activity 8 months in future",
+                        Category = "drinks",
+                        City = "Alhambra",
                         Venue = "Pub",
                         Attendees = new List<ActivityAttendee>
                         {
